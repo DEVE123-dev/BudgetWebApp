@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Budget Friendly</title>
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+	<div class="container">
+		<header>
+			<div class="header-row">
+				<div>
+					<h1>Budget Friendly</h1>
+					<p class="tagline">Simple, local, and exportable budgets</p>
+				</div>
+				<div class="header-actions">
+					<label for="profile-select" class="visually-hidden">Profile</label>
+					<select id="profile-select" aria-label="Profile selector"></select>
+					<button id="new-profile" class="btn small">+ Profile</button>
+					<button id="theme-toggle" class="btn small">Toggle Theme</button>
+				</div>
+			</div>
+		</header>
+
+		<section class="controls">
+			<form id="transaction-form">
+				<input id="desc" type="text" placeholder="Description" aria-label="Description" required />
+				<input id="amount" type="number" step="0.01" placeholder="Amount" aria-label="Amount" required />
+				<input id="date" type="date" aria-label="Date" />
+				<select id="type" aria-label="Type">
+					<option value="income">Income</option>
+					<option value="expense">Expense</option>
+				</select>
+				<input id="category" type="text" placeholder="Category (e.g., Food)" aria-label="Category" />
+				<input id="cat-color" type="color" value="#2563eb" title="Category color" aria-label="Category color" />
+				<button class="btn" type="submit">Add</button>
+			</form>
+			<div class="export-row">
+				<button id="export-btn" class="btn secondary">Export PDF</button>
+				<button id="export-csv" class="btn secondary">Export CSV</button>
+			</div>
+		</section>
+
+		<main id="report">
+		
+			<section class="summary">
+				<div>
+					<strong>Balance</strong>
+					<div id="balance">K0.00</div>
+				</div>
+				<div>
+					<strong>Income</strong>
+					<div id="income">K0.00</div>
+				</div>
+				<div>
+					<strong>Expenses</strong>
+					<div id="expense">K0.00</div>
+				</div>
+			</section>
+
+			<section class="transactions">
+				<h2>Transactions</h2>
+				<ul id="transactions-list" class="list"></ul>
+			</section>
+
+			<section class="insights" aria-live="polite">
+				<h2>Insights</h2>
+				<div id="insights-list">
+					<p id="top-category">Top category: —</p>
+					<p id="spike-warning" class="warning"></p>
+					<p id="motivation" class="muted"></p>
+				</div>
+			</section>
+
+			<section class="goals">
+				<h2>Budget Goals</h2>
+				<div class="goal-row">
+					  <input id="goal-amount" type="number" placeholder="Monthly goal (K)" aria-label="Monthly goal" />
+					<button id="set-goal" class="btn small">Set Goal</button>
+				</div>
+				<div class="goal-progress">
+					<label for="goal-bar">This month's progress</label>
+					<div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+						<div id="goal-bar" class="progress-fill" style="width:0%"></div>
+					</div>
+					<div id="goal-meta" class="muted">No goal set</div>
+				</div>
+			</section>
+		</main>
+
+		<footer>
+			<small>Data stored locally in your browser. Export to save a PDF copy. MADE BY DVH</small>
+		</footer>
+	</div>
+
+
+	<!-- Modal for onboarding, confirmations, and inputs -->
+	<div id="modal" class="modal" role="dialog" aria-hidden="true">
+		<div class="modal-content" role="document">
+			<button class="modal-close" aria-label="Close">✕</button>
+			<div id="modal-body"></div>
+		</div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+	<script src="script.js" defer></script>
+</body>
+</html>
